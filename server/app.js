@@ -3,6 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+require('dotenv').config()
+
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'development'
+}
+
+const DB_URL = {
+  development: process.env.DB_dev,
+  test: process.env.DB_test
+}
+
+mongoose.connect(DB_URL[process.env.NODE_ENV], { useNewUrlParser: true })
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
