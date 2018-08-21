@@ -1,5 +1,7 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var bcrypt = require('bcryptjs');
+require('mongoose-type-email');
 
 var userSchema = new mongoose.Schema({
     name: {
@@ -7,9 +9,10 @@ var userSchema = new mongoose.Schema({
         required: true
     },
     email: {
-        type: String,
+        type: mongoose.SchemaTypes.Email,
         unique: true,
-        required: true
+        required: true,
+
     },
     password: {
         type: String,
@@ -18,6 +21,12 @@ var userSchema = new mongoose.Schema({
     }
 },{
     timestamps: true
+})
+
+userSchema.pre('save', function (next) {
+    var hash = bcrypt.hashSync(this.password, 10);
+    this.password = hash
+    next()
 })
 
 var User = mongoose.model('User', userSchema)
