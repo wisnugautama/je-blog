@@ -3,12 +3,13 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 const createArticle = (req,res) => {
-    const { title, description } = req.body
+    const { title, description, image } = req.body
     let decoded = jwt.verify(req.headers.token, process.env.JWT_SECRET)
     Article.create({
         title: title,
         description: description,
-        userId: decoded.id
+        userId: decoded.id,
+        image: image
     })
         .then((article) => {
             res.status(201).json({
@@ -101,13 +102,11 @@ const updateArticle = (req,res) => {
         description: description
     })
         .then(() => {
-            console.log('masuk sini');
             res.status(201).json({
                 message: `Article Successfully Updated!`
             })
         })
         .catch((err) => {
-            console.log('masuk situ');
             res.status(400).json({
                 message: err.message
             })
@@ -136,8 +135,6 @@ const AddComments = (req,res) => {
 }
 
 const deleteComment = (req,res) => {
-    console.log(req.params);
-    console.log(req.body);
     Article.update({
         _id: req.params.id
     },{

@@ -65,7 +65,6 @@ const login = (req,res) => {
 const getMe = (req,res) => {
     let token = req.headers.token
     let decode = jwt.verify(token, process.env.JWT_SECRET)
-    console.log(req.headers.token);
     User.findOne({
         _id: decode.id
     })

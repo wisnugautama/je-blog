@@ -15,7 +15,8 @@ var articleSchema = new mongoose.Schema({
         comment: String,
         date: Date
     }],
-    userId: { type: Schema.Types.ObjectId, ref: 'User' }
+    userId: { type: Schema.Types.ObjectId, ref: 'User' },
+    image: String
 },{
     timestamps: true
 })
