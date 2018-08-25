@@ -1,0 +1,114 @@
+<template>
+    <div class="container">
+       <v-layout>
+        <v-flex xs12 sm12>
+        <v-card v-bind:key="article.id">
+            <v-card-media
+            src="https://static1.squarespace.com/static/55ccf522e4b0fc9c2b651a5d/t/5a674e0ce2c48352fcdc7ec1/1516719714735/Slayer_HorizontalBanner_VIP.jpg?format=1000w"
+            height="400px"
+            ></v-card-media>
+
+            <v-card-title primary-title>
+            <div>
+                <h3 class="headline mb-0"> <b>{{ article.title }}</b> </h3>
+                <div> <h3>{{ article.description }}</h3> </div>
+                <br>
+                <hr>
+                <div style="text-align: center; color: grey"> <b>Posted by on {{ article.user }} {{ article.date.slice(0,10) }}</b></div>
+            </div>
+            </v-card-title>
+            <h3>Leave Your Comment Here</h3>
+            <br>
+            <div class="container" style="width: 1000px;" v-if="cek_login">
+                <v-textarea rows="3" cols="5" v-model="comment"></v-textarea>
+                <v-btn @click="addComment">Post</v-btn>
+            </div>
+            <div v-if="!cek_login">
+                <h3>Please Login First!</h3>
+                <v-btn to="/login">Login</v-btn>
+            </div>
+        </v-card>
+        </v-flex>
+       </v-layout> 
+       <br>
+       <h1>Comments</h1>
+       <Comment></Comment>
+    </div>
+</template>
+
+<script>
+import axios from 'axios'
+import Comment from '@/components/Comment.vue'
+export default {
+    components: {
+        Comment
+    },
+
+    data () {
+        return {
+            article: {
+                id: '',
+                title: '',
+                description: '',
+                user: '',
+                date: ''
+            },
+            comment: '',
+            cek_login: localStorage.getItem('token')
+        }
+    },
+
+    methods: {
+        addComment () {
+            axios({
+                method: 'put',
+                url: `http://localhost:3000/articles/comment/${this.$route.params.id}`,
+                data: {
+                    comment: this.comment
+                },
+                headers: {
+                    token: localStorage.getItem('token')
+                }
+            })
+                .then((result) => {
+                    this.$router.go()
+                })
+                .catch((err) => {
+                    swal(err.message)
+                });
+        }
+    },
+
+    created () {
+        let id = this.$route.params.id
+        axios({
+            method: 'get',
+            url: `http://localhost:3000/articles/${id}`
+        })
+            .then((result) => {
+                this.article.id = result.data.data._id
+                this.article.title = result.data.data.title
+                this.article.description = result.data.data.description
+                this.article.user = result.data.data.userId.name
+                this.article.date = result.data.data.createdAt
+            })
+            .catch((err) => {
+                swal(err.message)
+            });
+        
+    }
+
+}
+</script>
+
+<style scoped>
+    .v-card {
+        color: beige;
+        background-color: black;
+    }
+
+    .v-btn {
+        color: beige;
+        background-color: brown;
+    }
+</style>

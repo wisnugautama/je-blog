@@ -50,8 +50,8 @@ const login = (req,res) => {
                     token
                 })
             }else {
-                res.status(400).json({
-                    message: `password wrong!`
+                res.status(200).json({
+                    message: `email / password wrong!`
                 })
             }
         })
@@ -62,7 +62,27 @@ const login = (req,res) => {
         });
 }
 
+const getMe = (req,res) => {
+    let token = req.headers.token
+    let decode = jwt.verify(token, process.env.JWT_SECRET)
+    console.log(req.headers.token);
+    User.findOne({
+        _id: decode.id
+    })
+        .then((result) => {
+            res.status(200).json({
+                data: result
+            })
+        })
+        .catch((err) => {
+            res.status(400).json({
+                message: err.message
+            })
+        });
+}
+
 module.exports = {
     register,
-    login
+    login,
+    getMe
 }

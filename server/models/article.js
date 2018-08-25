@@ -9,7 +9,12 @@ var articleSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    comment: [],
+    comments: [{
+        userId: { type: Schema.Types.ObjectId, ref: 'User' },
+        name: String,
+        comment: String,
+        date: Date
+    }],
     userId: { type: Schema.Types.ObjectId, ref: 'User' }
 },{
     timestamps: true
