@@ -1,15 +1,16 @@
 const router = require('express').Router()
 const images = require('../helpers/image.js')
+const auth = require('../middleware/auth')
 const { createArticle, findAllarticle, deleteArticle, findMyArticle, updateArticle, findOneArticle, AddComments, deleteComment } = require('../controllers/article-controller')
 
-router.post('/', createArticle)
-router.get('/', findAllarticle)
-router.get('/me', findMyArticle)
+router.post('/',auth, createArticle)
+router.get('/',findAllarticle)
+router.get('/me',auth, findMyArticle)
 router.get('/:id', findOneArticle)
-router.delete('/:id', deleteArticle)
-router.put('/comment/:id', AddComments)
-router.put('/comment/:id/delete', deleteComment)
-router.put('/:id', updateArticle)
+router.delete('/:id',auth, deleteArticle)
+router.put('/comment/:id',auth, AddComments)
+router.put('/comment/:id/delete',auth, deleteComment)
+router.put('/:id',auth, updateArticle)
 
 router.post('/upload',
   images.multer.single('image'), 
