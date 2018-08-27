@@ -85,7 +85,7 @@ export default {
                     this.user_login = result.data.data.name
                 })
                 .catch((err) => {
-                    swal(err.message)
+                    // swal(err.message)
                 });
         }
     },
@@ -101,7 +101,7 @@ export default {
     .v-card {
         background-color: black;
         margin-bottom: 20px;
-        
+        color: beige;
         border: 1px solid white;
         width: 900px
     }

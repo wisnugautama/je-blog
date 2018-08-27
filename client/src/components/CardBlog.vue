@@ -3,14 +3,12 @@
   <v-layout align-start justify-start row fill-height wrap>
     <v-layout xs12 sm6 v-for="(data,i) in article" v-bind:key="i">
       <v-card class="kartu">
-        <v-card-media
-          src="https://static1.squarespace.com/static/55ccf522e4b0fc9c2b651a5d/t/5a674e0ce2c48352fcdc7ec1/1516719714735/Slayer_HorizontalBanner_VIP.jpg?format=1000w"
-          height="200px"
+        <v-card-media v-bind:src="data.image" height="200px"
         ></v-card-media>
 
         <v-card-title primary-title>
           <div>
-            <h3 class="headline mb-0" style="text-align: left;"> {{ data.title }} </h3>
+            <h3 style="text-align: left;"> {{ data.title }} </h3>
             <hr>
             <div style="text-align: left; color: brown"> <b>Posted by {{ data.userId.name }} on {{ data.createdAt.slice(0,10) }}</b></div>
           </div>

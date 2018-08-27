@@ -16,7 +16,7 @@
               <v-flex xs12>
                 <v-textarea rows="20" v-model="description" label="Content Article"></v-textarea>
               </v-flex>
-                <input type="file">
+                <input v-on:change="getImage" type="file">
             </v-layout>
           </v-container>
           <small>*indicates required field</small>
@@ -40,33 +40,48 @@ export default {
       dialog: false,
       title: '',
       description: '',
+      image: ''
     }),
 
     methods: {
       addArticle: function () {
-        let token = localStorage.getItem('token')
-        axios({
-          method: 'post',
-          url: 'http://localhost:3000/articles',
-          headers: {
-            token
-          },
-          data: {
-            title: this.title,
-            description: this.description
-          }
-
-        })
+        // let token = localStorage.getItem('token')
+        let formdata = new FormData()
+        formdata.append('image', this.image)
+        axios.post('http://localhost:3000/articles/upload', formdata)
           .then((result) => {
             console.log(result);
-            swal(result.data.message)
-            // this.$router.push('/articles')
-            this.$router.go()
-            
+            axios({
+              method: 'post',
+              url: 'http://localhost:3000/articles',
+              headers: {
+                token: localStorage.getItem('token')
+              },
+              data: {
+                title: this.title,
+                description: this.description,
+                image: result.data.link
+              }
+            })
+              .then((result) => {
+                console.log(result);
+                swal(result.data.message)
+                // this.$router.push('/articles')
+                this.$router.go()
+                
+              })
+              .catch((err) => {
+                
+              });
           })
           .catch((err) => {
-            
+            swal(err.message)
           });
+      },
+
+      getImage (image) {
+        this.image = image.target.files[0]
+        console.log(this.image);
       }
     }
 }

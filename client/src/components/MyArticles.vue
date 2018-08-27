@@ -3,9 +3,7 @@
        <v-layout>
         <v-flex xs12 sm12>
         <v-card v-for="(data,i) in MyArticles" v-bind:key="i">
-            <v-card-media
-            src="https://static1.squarespace.com/static/55ccf522e4b0fc9c2b651a5d/t/5a674e0ce2c48352fcdc7ec1/1516719714735/Slayer_HorizontalBanner_VIP.jpg?format=1000w"
-            height="200px"
+            <v-card-media v-bind:src="data.image" height="200px"
             ></v-card-media>
 
             <v-card-title primary-title>
@@ -55,7 +53,7 @@ export default {
           this.MyArticles = result.data.data
         })
         .catch((err) => {
-          console.log('wahyu = babi', err);
+          // swal(err.message)
         });
     },
 

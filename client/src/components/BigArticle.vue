@@ -3,10 +3,7 @@
        <v-layout>
         <v-flex xs12 sm12>
         <v-card v-bind:key="article.id">
-            <v-card-media
-            src="https://static1.squarespace.com/static/55ccf522e4b0fc9c2b651a5d/t/5a674e0ce2c48352fcdc7ec1/1516719714735/Slayer_HorizontalBanner_VIP.jpg?format=1000w"
-            height="400px"
-            ></v-card-media>
+            <v-card-media v-bind:src="article.image" height="400px"></v-card-media>
 
             <v-card-title primary-title>
             <div>
@@ -51,7 +48,8 @@ export default {
                 title: '',
                 description: '',
                 user: '',
-                date: ''
+                date: '',
+                image: ''
             },
             comment: '',
             cek_login: localStorage.getItem('token')
@@ -91,6 +89,7 @@ export default {
                 this.article.description = result.data.data.description
                 this.article.user = result.data.data.userId.name
                 this.article.date = result.data.data.createdAt
+                this.article.image = result.data.data.image
             })
             .catch((err) => {
                 swal(err.message)
