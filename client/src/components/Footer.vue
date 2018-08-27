@@ -31,7 +31,5 @@ export default {
 </script>
 
 <style scoped>
-  .au {
-    /* height: 1000px; */
-  }
+
 </style>

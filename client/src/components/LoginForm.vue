@@ -37,7 +37,7 @@ export default {
     login: function () {
       axios({
         method: 'post',
-        url: 'http://localhost:3000/users/login',
+        url: 'http://server-strash.wisnugautama.xyz/users/login',
         data: {
           email: this.email,
           password: this.password
@@ -51,7 +51,6 @@ export default {
             localStorage.setItem('token', token)
             swal(response.data.message)
             router.push('/')
-            this.$router.go('/')
           }
         })
         .catch((err) => {
@@ -68,8 +67,6 @@ export default {
     background-color: black;
     margin-bottom: 50px;
     margin-top: 100px;
-    /* width: 400px; */
-    /* margin-left: -1px; */
   }
 
   .v-btn {

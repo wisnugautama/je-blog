@@ -60,7 +60,7 @@ export default {
         addComment () {
             axios({
                 method: 'put',
-                url: `http://localhost:3000/articles/comment/${this.$route.params.id}`,
+                url: `http://server-strash.wisnugautama.xyz/articles/comment/${this.$route.params.id}`,
                 data: {
                     comment: this.comment
                 },
@@ -69,10 +69,10 @@ export default {
                 }
             })
                 .then((result) => {
-                    this.$router.go()
+                    swal(result.data.message)
                 })
                 .catch((err) => {
-                    swal(err.message)
+                    
                 });
         }
     },
@@ -81,7 +81,7 @@ export default {
         let id = this.$route.params.id
         axios({
             method: 'get',
-            url: `http://localhost:3000/articles/${id}`
+            url: `http://server-strash.wisnugautama.xyz/articles/${id}`
         })
             .then((result) => {
                 this.article.id = result.data.data._id
@@ -92,7 +92,7 @@ export default {
                 this.article.image = result.data.data.image
             })
             .catch((err) => {
-                swal(err.message)
+                
             });
         
     }

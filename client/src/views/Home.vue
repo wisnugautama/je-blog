@@ -27,14 +27,12 @@ export default {
   mounted () {
     axios({
       method: 'get',
-      url: 'http://localhost:3000/articles',
+      url: 'http://server-strash.wisnugautama.xyz/articles',
     })
       .then((response) => {
-        console.log(response.data.data);
         this.articles = response.data.data
       })
       .catch((err) => {
-        console.log(err);
       });
   }
 }

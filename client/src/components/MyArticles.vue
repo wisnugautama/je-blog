@@ -43,17 +43,16 @@ export default {
     mounted () {
       axios({
         method: 'get',
-        url: 'http://localhost:3000/articles/me',
+        url: 'http://server-strash.wisnugautama.xyz/articles/me',
         headers: {
           token: this.token
         }
       })
         .then((result) => {
-          console.log(result.data.data);
           this.MyArticles = result.data.data
         })
         .catch((err) => {
-          // swal(err.message)
+          
         });
     },
 
@@ -61,17 +60,16 @@ export default {
       deleteArticle (data) {
         axios({
           method: 'delete',
-          url: `http://localhost:3000/articles/${data._id}`,
+          url: `http://server-strash.wisnugautama.xyz/articles/${data._id}`,
           headers: {
             token: this.token
           }
         })
           .then((result) => {
             swal(result.data.message)
-            this.$router.go()
           })
           .catch((err) => {
-            swal(err.message)
+            
           });
       }
     }

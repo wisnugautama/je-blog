@@ -23,7 +23,7 @@ export default {
     updateArticle () {
       axios({
         method: 'put',
-        url: `http://localhost:3000/articles/${this.$route.params.id}`,
+        url: `http://server-strash.wisnugautama.xyz/articles/${this.$route.params.id}`,
         headers: {
           token: localStorage.getItem('token')
         },
@@ -35,7 +35,8 @@ export default {
         .then((result) => {
           swal(result.data.message)
           this.$router.push('/articles')
-        }).catch((err) => {
+        })
+        .catch((err) => {
           
         });
     }
@@ -44,7 +45,7 @@ export default {
   created () {
     axios({
       method: 'get',
-      url: `http://localhost:3000/articles/${this.$route.params.id}`,
+      url: `http://server-strash.wisnugautama.xyz/articles/${this.$route.params.id}`,
       headers: {
         token: localStorage.getItem('token')
       }
@@ -55,7 +56,7 @@ export default {
         this.description = result.data.data.description
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   }
 }

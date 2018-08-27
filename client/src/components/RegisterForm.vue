@@ -42,7 +42,7 @@ export default {
         register: function () {
             axios({
                 method: 'post',
-                url: 'http://localhost:3000/users/register',
+                url: 'http://server-strash.wisnugautama.xyz/users/register',
                 data: {
                     name: this.name,
                     email: this.email,

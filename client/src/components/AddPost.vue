@@ -45,15 +45,13 @@ export default {
 
     methods: {
       addArticle: function () {
-        // let token = localStorage.getItem('token')
         let formdata = new FormData()
         formdata.append('image', this.image)
-        axios.post('http://localhost:3000/articles/upload', formdata)
+        axios.post('http://server-strash.wisnugautama.xyz/articles/upload', formdata)
           .then((result) => {
-            console.log(result);
             axios({
               method: 'post',
-              url: 'http://localhost:3000/articles',
+              url: 'http://server-strash.wisnugautama.xyz/articles',
               headers: {
                 token: localStorage.getItem('token')
               },
@@ -64,10 +62,7 @@ export default {
               }
             })
               .then((result) => {
-                console.log(result);
                 swal(result.data.message)
-                // this.$router.push('/articles')
-                this.$router.go()
                 
               })
               .catch((err) => {
@@ -75,13 +70,12 @@ export default {
               });
           })
           .catch((err) => {
-            swal(err.message)
+            
           });
       },
 
       getImage (image) {
         this.image = image.target.files[0]
-        console.log(this.image);
       }
     }
 }
@@ -90,6 +84,5 @@ export default {
 <style>
   .ho {
     background-color: white;
-    /* height: 500px; */
   }
 </style>

@@ -12,10 +12,6 @@ export default {
     components: {
         bigArticle
     },
-
-    mounted () {
-        console.log(this.$route.params.id);
-    }
 }
 </script>
 
