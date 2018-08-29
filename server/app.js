@@ -20,7 +20,7 @@ mongoose.connect(DB_URL[process.env.NODE_ENV], { useNewUrlParser: true })
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var articleRouter = require('./routes/articles')
+var articleRouter = require('./routes/articles');
 
 var app = express();
 

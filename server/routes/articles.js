@@ -1,6 +1,7 @@
-const router = require('express').Router()
+const express = require('express')
+const router = express.Router()
 const images = require('../helpers/image.js')
-const auth = require('../middleware/auth')
+const { auth }  = require('../middleware/auth')
 const { createArticle, findAllarticle, deleteArticle, findMyArticle, updateArticle, findOneArticle, AddComments, deleteComment } = require('../controllers/article-controller')
 
 router.post('/',auth, createArticle)
