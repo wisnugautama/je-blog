@@ -48,12 +48,12 @@ export default {
         // let token = localStorage.getItem('token')
         let formdata = new FormData()
         formdata.append('image', this.image)
-        axios.post('http://localhost:3000/articles/upload', formdata)
+        axios.post('https://server-strash.wisnugautama.xyz/articles/upload', formdata)
           .then((result) => {
             console.log(result);
             axios({
               method: 'post',
-              url: 'http://localhost:3000/articles',
+              url: 'https://server-strash.wisnugautama.xyz/articles',
               headers: {
                 token: localStorage.getItem('token')
               },

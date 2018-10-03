@@ -24,7 +24,7 @@ export default {
 
 <style>
 body {
-  background-image: url('./assets/666.jpg');
+  /* background-image: url('./assets/666.jpg'); */
   background-color: black;
   background-attachment: fixed;
   margin-top: 60px;

@@ -43,7 +43,7 @@ export default {
     mounted () {
       axios({
         method: 'get',
-        url: 'http://localhost:3000/articles/me',
+        url: 'https://server-strash.wisnugautama.xyz/articles/me',
         headers: {
           token: this.token
         }
@@ -61,7 +61,7 @@ export default {
       deleteArticle (data) {
         axios({
           method: 'delete',
-          url: `http://localhost:3000/articles/${data._id}`,
+          url: `https://server-strash.wisnugautama.xyz/articles/${data._id}`,
           headers: {
             token: this.token
           }

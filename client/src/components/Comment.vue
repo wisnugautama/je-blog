@@ -38,7 +38,7 @@ export default {
         getArticles() {
             axios({
             method: 'get',
-            url: `http://localhost:3000/articles/${this.$route.params.id}`,
+            url: `https://server-strash.wisnugautama.xyz/articles/${this.$route.params.id}`,
             headers: {
                 token: localStorage.getItem('token')
             }
@@ -55,7 +55,7 @@ export default {
         deleteComment (id_comment) {
                 axios({
                 method: 'put',
-                url: `http://localhost:3000/articles/comment/${this.$route.params.id}/delete`,
+                url: `https://server-strash.wisnugautama.xyz/articles/comment/${this.$route.params.id}/delete`,
                 headers: {
                     token: localStorage.getItem('token')
                 },
@@ -76,7 +76,7 @@ export default {
         getMe () {
             axios({
                 method: 'get',
-                url: `http://localhost:3000/users`,
+                url: `https://server-strash.wisnugautama.xyz/users`,
                 headers: {
                     token: localStorage.getItem('token')
                 }

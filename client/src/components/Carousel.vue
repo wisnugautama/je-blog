@@ -1,30 +1,41 @@
 <template>
-  <v-jumbotron class="black  jmb">
-    <v-container fill-height>
-      <v-layout align-center>
-        <v-flex>
-          <h1>Welcome To STRASH</h1>
-
-          <h3 class="subheading">STRASH is a blog about Underground Music and Band. You can post some information or Article in this Blog. <br> Let's Share some Article about UNDERGROUND! ALL HAIL STRASH!</h3>
-
-          <v-divider class="my-3"></v-divider>
-
-          <div class="title mb-3">Check out our newest Articles!</div>
-          <img src="../assets/arrow2.png" alt="">
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-jumbotron>
+  <v-carousel>
+    <v-carousel-item
+      v-for="(item,i) in items"
+      :key="i"
+      :src="item.src"
+      style="height: 100%"
+    ></v-carousel-item>
+  </v-carousel>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      items: [
+          {
+            src: 'https://data.whicdn.com/images/35556949/original.jpg'
+          },
+          {
+            src: 'https://images.genius.com/3ee40041f7070ffb6d887c1a3f8b9144.1000x1000x1.jpg'
+          },
+          {
+            src: 'https://img.grouponcdn.com/deal/2bDhGAanGBeEBc4Mrttvo71BgM1X/2b-2048x1229/v1/c700x420.jpg'
+          }
+        ]
+    }
+  }
 }
 </script>
 
 <style scoped>
   h1 {
     font-size: 100px; 
+  }
+
+  .carousel {
+    background-position: center
   }
 
   .jmb {

@@ -60,7 +60,7 @@ export default {
         addComment () {
             axios({
                 method: 'put',
-                url: `http://localhost:3000/articles/comment/${this.$route.params.id}`,
+                url: `https://server-strash.wisnugautama.xyz/articles/comment/${this.$route.params.id}`,
                 data: {
                     comment: this.comment
                 },
@@ -81,7 +81,7 @@ export default {
         let id = this.$route.params.id
         axios({
             method: 'get',
-            url: `http://localhost:3000/articles/${id}`
+            url: `https://server-strash.wisnugautama.xyz/articles/${id}`
         })
             .then((result) => {
                 this.article.id = result.data.data._id

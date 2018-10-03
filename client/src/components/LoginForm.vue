@@ -37,7 +37,7 @@ export default {
     login: function () {
       axios({
         method: 'post',
-        url: 'http://localhost:3000/users/login',
+        url: 'https://server-strash.wisnugautama.xyz/users/login',
         data: {
           email: this.email,
           password: this.password

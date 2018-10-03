@@ -27,7 +27,7 @@ export default {
   mounted () {
     axios({
       method: 'get',
-      url: 'http://localhost:3000/articles',
+      url: 'https://server-strash.wisnugautama.xyz/articles',
     })
       .then((response) => {
         console.log(response.data.data);
